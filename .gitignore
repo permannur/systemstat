@@ -1,0 +1,11 @@
+daemon
+.DS_Store
+vendor/
+config.json
+key.bin
+*.config.json
+.idea/
+public/
+.vscode/
+daemon.log
+.scannerwork
