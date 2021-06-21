@@ -1,4 +1,4 @@
-package parser
+package systemstat
 
 func calcPercent(total, part int64) int {
 	if total <= 0 {
