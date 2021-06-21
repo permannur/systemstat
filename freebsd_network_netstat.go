@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"strconv"
 	"strings"
-	"github.com/permannur/command"
 )
 
 // FreeBsdNetstat netstat -ib
@@ -13,7 +12,7 @@ func FreeBsdNetstat() (in, out *Network, err error) {
 		in:  &Network{},
 		out: &Network{},
 	}
-	err = command.NewCommand(`(\S+)\s+(?:(\d+)|(?:-))\s+(\S+)\s+(\S+)\s+(?:(\d+)|(?:-))\s+(?:(\d+)|(?:-))\s+(?:(\d+)|(?:-))\s+(?:(\d+)|(?:-))\s+(?:(\d+)|(?:-))\s+(?:(\d+)|(?:-))\s+(?:(\d+)|(?:-))\s+(?:(\d+)|(?:-))\n`,
+	err = newCommand(`(\S+)\s+(?:(\d+)|(?:-))\s+(\S+)\s+(\S+)\s+(?:(\d+)|(?:-))\s+(?:(\d+)|(?:-))\s+(?:(\d+)|(?:-))\s+(?:(\d+)|(?:-))\s+(?:(\d+)|(?:-))\s+(?:(\d+)|(?:-))\s+(?:(\d+)|(?:-))\s+(?:(\d+)|(?:-))\n`,
 		freeBsdNetstat,
 		"netstat",
 		"-ib")

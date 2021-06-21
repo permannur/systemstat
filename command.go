@@ -1,10 +1,9 @@
-package command
+package parser
 
 import (
 	"fmt"
 	"os/exec"
 	"regexp"
-	"github.com/permannur/updater"
 )
 
 type parser interface {
@@ -18,7 +17,7 @@ type command struct {
 	parser parser
 }
 
-func NewCommand(regexStr string, parser parser, cmdStr string, args ...string) (err error) {
+func newCommand(regexStr string, parser parser, cmdStr string, args ...string) (err error) {
 	c := &command{
 		cmd:    cmdStr,
 		args:   args,
@@ -38,7 +37,7 @@ func NewCommand(regexStr string, parser parser, cmdStr string, args ...string) (
 	if err != nil {
 		return
 	}
-	updater.AddReader(c)
+	addReader(c)
 	return
 }
 

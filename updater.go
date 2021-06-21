@@ -1,4 +1,4 @@
-package updater
+package parser
 
 import (
 	"fmt"
@@ -8,10 +8,10 @@ import (
 type updater struct {
 	interval   time.Duration
 	quit       chan interface{}
-	readerList []Reader
+	readerList []reader
 }
 
-type Reader interface {
+type reader interface {
 	Read() error
 }
 
@@ -21,7 +21,7 @@ func (u *updater) Stop() {
 	u.quit <- 1
 }
 
-func AddReader(rd Reader) {
+func addReader(rd reader) {
 	if u == nil {
 		u = &updater{
 			interval: time.Second,

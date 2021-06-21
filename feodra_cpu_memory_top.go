@@ -3,7 +3,6 @@ package parser
 import (
 	"fmt"
 	"strconv"
-	"github.com/permannur/command"
 )
 
 // FedoraTop top -b -n 1 -E k -w 512 -1 -p 0
@@ -13,7 +12,7 @@ func FedoraTop() (cpu *Cpu, memory *Memory, err error) {
 		cpu:    &Cpu{},
 		memory: &Memory{},
 	}
-	err = command.NewCommand(`(Cpu(\d+).+?(\d+)\.(\d+).+?(\d+)\.(\d+).+?(\d+)\.(\d+).+?(\d+)\.(\d+).+?(\d+)\.(\d+).+?(\d+)\.(\d+).+?(\d+)\.(\d+).+?(\d+)\.(\d+))|(KiB Mem.+?(\d+) total.+?(\d+) free.+?(\d+) used.+?(\d+) buff\/cache\nKiB Swap.+?(\d+) total.+?(\d+) free.+?(\d+) used\..+?(\d+) avail)`,
+	err = newCommand(`(Cpu(\d+).+?(\d+)\.(\d+).+?(\d+)\.(\d+).+?(\d+)\.(\d+).+?(\d+)\.(\d+).+?(\d+)\.(\d+).+?(\d+)\.(\d+).+?(\d+)\.(\d+).+?(\d+)\.(\d+))|(KiB Mem.+?(\d+) total.+?(\d+) free.+?(\d+) used.+?(\d+) buff\/cache\nKiB Swap.+?(\d+) total.+?(\d+) free.+?(\d+) used\..+?(\d+) avail)`,
 		fedoraTop,
 		"top",
 		"-b", "-n", "1", "-E", "k", "-w", "512", "-1", "-p", "0")

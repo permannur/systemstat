@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"strconv"
 	"strings"
-	"github.com/permannur/command"
 )
 
 // FedoraNetstat netstat -e -i
@@ -13,7 +12,7 @@ func FedoraNetstat() (receive, send *Network, err error) {
 		receive: &Network{},
 		send:    &Network{},
 	}
-	err = command.NewCommand(`(\w+):(.|\n)+?bytes\s+(\d+)(.|\n)+?bytes\s+(\d+)`, fedoraNetstat, "netstat", "-e", "-i")
+	err = newCommand(`(\w+):(.|\n)+?bytes\s+(\d+)(.|\n)+?bytes\s+(\d+)`, fedoraNetstat, "netstat", "-e", "-i")
 	if err != nil {
 		err = fmt.Errorf("FedoraNetstat: %s", err)
 		return

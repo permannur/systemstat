@@ -3,7 +3,6 @@ package parser
 import (
 	"fmt"
 	"strconv"
-	"github.com/permannur/command"
 )
 
 // FedoraDf df -B KiB
@@ -18,7 +17,7 @@ func FedoraDf(diskList ...string) (hd *Hd, err error) {
 	fedoraDf := &fedoraDfParser{
 		hd: &Hd{},
 	}
-	err = command.NewCommand(`(\d+)KiB\s+(\d+)KiB\s+(\d+)KiB\s+(\d+)%\s+(`+diskListInRegex+`)\n`, fedoraDf, "df", "-B", "KiB")
+	err = newCommand(`(\d+)KiB\s+(\d+)KiB\s+(\d+)KiB\s+(\d+)%\s+(`+diskListInRegex+`)\n`, fedoraDf, "df", "-B", "KiB")
 	if err != nil {
 		err = fmt.Errorf("FedoraDf: %s", err)
 		return

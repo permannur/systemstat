@@ -3,7 +3,6 @@ package parser
 import (
 	"fmt"
 	"strconv"
-	"github.com/permannur/command"
 )
 
 // FreeBsdDf df -kT
@@ -18,7 +17,7 @@ func FreeBsdDf(diskList ...string) (hd *Hd, err error) {
 	freeBsdDf := freeBsdDfParser{
 		hd: &Hd{},
 	}
-	err = command.NewCommand(`(\S+)\s+(\w+)\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+)(?:\.(\d+))?%\s+(`+diskListInRegex+`)\n`,
+	err = newCommand(`(\S+)\s+(\w+)\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+)(?:\.(\d+))?%\s+(`+diskListInRegex+`)\n`,
 		freeBsdDf,
 		"df",
 		"-kT")

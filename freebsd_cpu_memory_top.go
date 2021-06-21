@@ -3,7 +3,6 @@ package parser
 import (
 	"fmt"
 	"strconv"
-	"github.com/permannur/command"
 )
 
 // FreeBsdTop Top version FreeBSD
@@ -12,7 +11,7 @@ func FreeBsdTop() (cpu *Cpu, memory *Memory, err error) {
 		cpu:    &Cpu{},
 		memory: &Memory{},
 	}
-	err = command.NewCommand(`(CPU\s+(\d+)?:\s+(\d+)(?:\.(\d+))?% user,\s+(\d+)(?:\.(\d+))?% nice,\s+(\d+)(?:\.(\d+))?% system,\s+(\d+)(?:\.(\d+))?% interrupt,\s+(\d+)(?:\.(\d+))?% idle\n)(?:(Mem:(?:\s+(\d+)([BKMGTE]) Active[,\n])?(?:\s+(\d+)([BKMGTE]) Inact[,\n])?(?:\s+(\d+)([BKMGTE]) Laundry[,\n])?(?:\s+(\d+)([BKMGTE]) Wired[,\n])?(?:\s+(\d+)([BKMGTE]) Buf[,\n])?(?:\s+(\d+)([BKMGTE]) Free[,\n])?)((.|\n)*(Swap:(?:\s+(\d+)([BKMGTE]) Total[,\n])?(?:\s+(\d+)([BKMGTE]) Free[,\n])?(?:\s+(\d+)(?:\.(\d+))?% Inuse[,\n])?(?:\s+(\d+)([BKMGTE]) In[,\n])?(?:\s+(\d+)([BKMGTE]) Out[,\n])?))?)?`,
+	err = newCommand(`(CPU\s+(\d+)?:\s+(\d+)(?:\.(\d+))?% user,\s+(\d+)(?:\.(\d+))?% nice,\s+(\d+)(?:\.(\d+))?% system,\s+(\d+)(?:\.(\d+))?% interrupt,\s+(\d+)(?:\.(\d+))?% idle\n)(?:(Mem:(?:\s+(\d+)([BKMGTE]) Active[,\n])?(?:\s+(\d+)([BKMGTE]) Inact[,\n])?(?:\s+(\d+)([BKMGTE]) Laundry[,\n])?(?:\s+(\d+)([BKMGTE]) Wired[,\n])?(?:\s+(\d+)([BKMGTE]) Buf[,\n])?(?:\s+(\d+)([BKMGTE]) Free[,\n])?)((.|\n)*(Swap:(?:\s+(\d+)([BKMGTE]) Total[,\n])?(?:\s+(\d+)([BKMGTE]) Free[,\n])?(?:\s+(\d+)(?:\.(\d+))?% Inuse[,\n])?(?:\s+(\d+)([BKMGTE]) In[,\n])?(?:\s+(\d+)([BKMGTE]) Out[,\n])?))?)?`,
 		freeBsdTop,
 		"top",
 		"-b", "-P", "0")
